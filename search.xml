@@ -7,7 +7,7 @@
       <url>/2018/01/15/scheduled/</url>
       <content type="html"><![CDATA[<p>#Spring定时器#</p>
 <blockquote>
-<p>项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器<br>+<a id="more"></a></p>
+<p>项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器<br><a id="more"></a></p>
 </blockquote>
 <p>###Spring.xml配置###</p>
 <ul>
@@ -126,6 +126,7 @@
 <blockquote>
 <p>最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。</p>
 </blockquote>
+<a id="more"></a>
 <p>###语法###<br>    create procedure 存储过程名()</p>
 <pre><code>DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存id值的变量名就不能为id，可以改为uid等
 
@@ -274,6 +275,7 @@ END $$
       <content type="html"><![CDATA[<h1 id="MacDown"><a href="#MacDown" class="headerlink" title="MacDown"></a>MacDown</h1><p><img src="http://macdown.uranusjr.com/static/images/logo-160.png" alt="MacDown logo"></p>
 <p>Hello there! I’m <strong>MacDown</strong>, the open source Markdown editor for OS X.</p>
 <p>Let me introduce myself.</p>
+<a id="more"></a>
 <h2 id="Markdown-and-I"><a href="#Markdown-and-I" class="headerlink" title="Markdown and I"></a>Markdown and I</h2><p><strong>Markdown</strong> is a plain text formatting syntax created by John Gruber, aiming to provide a easy-to-read and feasible markup. The original Markdown syntax specification can be found <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">here</a>.</p>
 <p><strong>MacDown</strong> is created as a simple-to-use editor for Markdown documents. I render your Markdown contents real-time into HTML, and display them in a preview panel.</p>
 <p><img src="http://d.pr/i/10UGP+" alt="MacDown Screenshot"></p>
@@ -304,7 +306,7 @@ Header 2
 #### Header 4
 ##### Header 5
 ###### Header 6
-</code></pre><h3 id="Links-and-Email"><a href="#Links-and-Email" class="headerlink" title="Links and Email"></a>Links and Email</h3><h4 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h4><p>Just put angle brackets around an email and it becomes clickable: <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x75;&#114;&#97;&#x6e;&#x75;&#x73;&#106;&#x72;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x75;&#114;&#97;&#x6e;&#x75;&#x73;&#106;&#x72;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
+</code></pre><h3 id="Links-and-Email"><a href="#Links-and-Email" class="headerlink" title="Links and Email"></a>Links and Email</h3><h4 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h4><p>Just put angle brackets around an email and it becomes clickable: <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#117;&#114;&#97;&#x6e;&#117;&#115;&#x6a;&#114;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#117;&#114;&#97;&#x6e;&#117;&#115;&#x6a;&#114;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;</a><br><code>&lt;uranusjr@gmail.com&gt;</code>  </p>
 <p>Same thing with urls: <a href="http://macdown.uranusjr.com" target="_blank" rel="noopener">http://macdown.uranusjr.com</a><br><code>&lt;http://macdown.uranusjr.com&gt;</code>  </p>
 <p>Perhaps you want to some link text like this: <a href="http://macdown.uranusjr.com" title="Title" target="_blank" rel="noopener">Macdown Website</a><br><code>[Macdown Website](http://macdown.uranusjr.com &quot;Title&quot;)</code> (The title is optional)  </p>
 <h4 id="Reference-style"><a href="#Reference-style" class="headerlink" title="Reference style"></a>Reference style</h4><p>Sometimes it looks too messy to include big long urls inline, or you want to keep all your urls together.  </p>
