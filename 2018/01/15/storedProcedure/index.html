@@ -15,12 +15,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="cola’s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/01/index.html">
+<meta name="description" content="#MySQL存储过程#  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。  ###语法###    create procedure 存储过程名() DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="storedProcedure">
+<meta property="og:url" content="http://yoursite.com/2018/01/15/storedProcedure/index.html">
 <meta property="og:site_name" content="cola’s blog">
+<meta property="og:description" content="#MySQL存储过程#  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。  ###语法###    create procedure 存储过程名() DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存">
+<meta property="og:updated_time" content="2018-01-15T14:09:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cola’s blog">
+<meta name="twitter:title" content="storedProcedure">
+<meta name="twitter:description" content="#MySQL存储过程#  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。  ###语法###    create procedure 存储过程名() DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2018/1 | cola’s blog</title>
+<title>storedProcedure | cola’s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -257,110 +261,322 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-storedProcedure" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2018/01/15/storedProcedure/" class="article-date">
+      <time datetime="2018-01-15T14:01:37.000Z" itemprop="datePublished">2018-01-15</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      storedProcedure
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/01/15/scheduled/" class="archive-article-date">
-      <time datetime="2018-01-15T14:01:59.000Z" itemprop="datePublished">01-15</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/scheduled/">scheduled</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <p>#MySQL存储过程#</p>
+<blockquote>
+<p>最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。</p>
+</blockquote>
+<p>###语法###<br>    create procedure 存储过程名()</p>
+<pre><code>DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存id值的变量名就不能为id，可以改为uid等
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+DECLARE done INT DEFAULT 0; #repeat结束标识
+
+DECLARE userCur cursor for select id from user; #声明游标
+
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1; #当循环列表完毕后将done设置为1
+
+open userCur; #打开游标
+
+REPEAT //进入循环
+
+FETCH userCur into uid; //赋值
+
+IF NOT DONE THEN //当done!=1继续循环
+
+搞事情.....
+
+END IF;
+
+UNTIL done END REPEAT; //知道done=1时结束循环
+
+END;
+</code></pre><p>###示例###<br>引入一段我自己写的存储过程来相互验证：</p>
+<pre><code>BEGIN
+    DECLARE activity_id INT(20);
+    DECLARE start_time CHAR(20);
+    DECLARE end_time CHAR(20);
+    DECLARE goods_id INT(11);
+    DECLARE nowDateStr CHAR(20);
+    DECLARE done INT DEFAULT 0; 
+
+    DECLARE cur_project CURSOR FOR
+        SELECT activityId,DATE_FORMAT(startTime, &apos;%Y-%m-%d %H:%i:%s&apos;),DATE_FORMAT(endTime, &apos;%Y-%m-%d %H:%i:%s&apos;),goodsId
+        FROM t_activity
+        WHERE delStatus = 0
+        ORDER BY activityId;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    SET nowDateStr = DATE_FORMAT(SYSDATE(), &apos;%Y-%m-%d %H:%i:%s&apos;);
+
+    OPEN cur_project;//打开游标
+
+    FETCH NEXT FROM cur_project INTO activity_id, start_time,end_time,goods_id;//从游标中循环取值
+
+
+    REPEAT
+    IF NOT done THEN
+        IF TIMESTAMPDIFF(SECOND,start_time,nowDateStr) &gt;=0 AND TIMESTAMPDIFF(SECOND,end_time,nowDateStr) &lt;=0 THEN
+                UPDATE t_goods SET isOffered = 0 where goodsId = goods_id;
+        END IF;
+        IF TIMESTAMPDIFF(SECOND,start_time,nowDateStr) &lt;0 OR TIMESTAMPDIFF(SECOND,end_time,nowDateStr) &gt;0 THEN
+                UPDATE t_goods SET isOffered = 1 where goodsId = goods_id;
+        END IF;
+        COMMIT;
+
+    END IF;
+    FETCH NEXT FROM cur_project INTO activity_id, start_time,end_time,goods_id;
+      UNTIL done END REPEAT;
+    CLOSE cur_project;//关闭游标
+
+END
+</code></pre><blockquote>
+<p>最后加上事件，设置执行时间，至于时间间隔长短就看需求而言了。</p>
+</blockquote>
+<p>###引申1###</p>
+<blockquote>
+<p>再来看一段loop的代码片段，与repeat有异曲同工之处。</p>
+</blockquote>
+<pre><code>begin
+   declare  b int;
+   declare  use_no    varchar(10);
+   declare  use_name  varchar(400);
+   declare  card_id   varchar(400);
+   declare  count     int;
+   declare  cur_1  cursor for
+ select s2.member_id,
+
+s2.realname,
+
+s2.card_id 
+
+from  bh_member.mb_member s1,bh_member.mb_member_info s2
+
+where s1.id = s2.member_id;                     
+
+   -- 如果不加该行  游标为空的时候  就会报错
+
+DECLARE CONTINUE HANDLER FOR NOT FOUND     --  如果不加该行的话将直接报错.No data - zero rows fetched, selected, or processed 
+
+    SET b = 0;
+    -- （1） sql 赋值
+    select count(1)  INTO count   
+from   bh_member.mb_member s1,bh_member.mb_member_info s2
+ where  s1.id = s2.member_id;
+
+
+    OPEN cur_1;
+
+    loop_label: loop
+          -- 从游标中循环取值
+          FETCH cur_1 INTO use_no, use_name, card_id;   
+
+           insert into zh_ceshi(use_no,use_name,card_id)  values(use_no, use_name, card_id);
+          set b=b+1;
+          if b = count    then
+              leave loop_label;
+          end if;
+
+
+    end loop;
+    CLOSE cur_1;
+ end;
+</code></pre><blockquote>
+<p>loop 标志位无条件循环，leave 类似于break 语句，跳出循环，跳出 begin end，iterate 类似于continue ，结束本次循环</p>
+</blockquote>
+<p>###引申2###</p>
+<blockquote>
+<p>再来一段while的代码片段</p>
+</blockquote>
+<pre><code>BEGIN  
+ DECLARE x  INT;  
+ DECLARE str  VARCHAR(255);  
+ SET x = 1;  
+ SET str =  &apos;&apos;;  
+ WHILE x  &lt;= 5 DO  
+     SET  str = CONCAT(str,x,&apos;,&apos;);  
+     SET  x = x + 1;  
+ END WHILE;  
+ SELECT str;  
+END $$  
+</code></pre><blockquote>
+<p>上面的例子最后输出“1,2,3,4,5,”这样的字符。</p>
+</blockquote>
+<p>至此，mysql存储过程的三大循环结束。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/15/storedProcedure/">storedProcedure</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mr.cola</a></p>
+        <p><span>发布时间:</span>2018-01-15, 22:01:37</p>
+        <p><span>最后更新:</span>2018-01-15, 22:09:19</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/15/storedProcedure/" title="storedProcedure">http://yoursite.com/2018/01/15/storedProcedure/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/15/storedProcedure/　　作者: Mr.cola" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/01/15/scheduled/">
+                    scheduled
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/01/11/hello-MacDown/">
+                    Hello MacDown
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/01/15/storedProcedure/" class="archive-article-date">
-      <time datetime="2018-01-15T14:01:37.000Z" itemprop="datePublished">01-15</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/storedProcedure/">storedProcedure</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/01/11/hello-MacDown/" class="archive-article-date">
-      <time datetime="2018-01-11T15:48:07.000Z" itemprop="datePublished">01-11</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/hello-MacDown/">Hello MacDown</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"storedProcedure　| cola’s blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
 
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2154999';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/01/15/scheduled/" title="上一篇: scheduled">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/01/11/hello-MacDown/" title="下一篇: Hello MacDown">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/scheduled/">scheduled</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/storedProcedure/">storedProcedure</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/11/hello-MacDown/">Hello MacDown</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

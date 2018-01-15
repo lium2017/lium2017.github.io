@@ -15,12 +15,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="cola’s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/01/index.html">
+<meta name="description" content="#Spring定时器#  项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器  ###Spring.xml配置###  开头bean标签中添加以下内容： xmlns:task=&amp;quot;http://www.springframework.org/schema/task&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scheduled">
+<meta property="og:url" content="http://yoursite.com/2018/01/15/scheduled/index.html">
 <meta property="og:site_name" content="cola’s blog">
+<meta property="og:description" content="#Spring定时器#  项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器  ###Spring.xml配置###  开头bean标签中添加以下内容： xmlns:task=&amp;quot;http://www.springframework.org/schema/task&amp;quot">
+<meta property="og:updated_time" content="2018-01-15T14:09:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cola’s blog">
+<meta name="twitter:title" content="scheduled">
+<meta name="twitter:description" content="#Spring定时器#  项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器  ###Spring.xml配置###  开头bean标签中添加以下内容： xmlns:task=&amp;quot;http://www.springframework.org/schema/task&amp;quot">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -52,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2018/1 | cola’s blog</title>
+<title>scheduled | cola’s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -62,8 +66,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -257,110 +261,282 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-scheduled" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2018/01/15/scheduled/" class="article-date">
+      <time datetime="2018-01-15T14:01:59.000Z" itemprop="datePublished">2018-01-15</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      scheduled
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/01/15/scheduled/" class="archive-article-date">
-      <time datetime="2018-01-15T14:01:59.000Z" itemprop="datePublished">01-15</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/scheduled/">scheduled</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <p>#Spring定时器#</p>
+<blockquote>
+<p>项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器</p>
+</blockquote>
+<p>###Spring.xml配置###</p>
+<ul>
+<li><p>开头bean标签中添加以下内容：</p>
+<pre><code>xmlns:task=&quot;http://www.springframework.org/schema/task&quot; 
+</code></pre></li>
+<li><p>xsi:schemaLocation中添加以下内容：</p>
+<pre><code>http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd &quot;
+</code></pre></li>
+<li><p>xml里添加以下内容：</p>
+<pre><code>&lt;task:annotation-driven /&gt;
+</code></pre></li>
+<li><p>开启注解</p>
+<pre><code>&lt;context:annotation-config /&gt;
+</code></pre></li>
+<li><p>扫描Controller</p>
+<pre><code>&lt;context:component-scan base-package=&quot;com.paonan.server.controller&quot; use-default-filters=&quot;false&quot;&gt;
+&lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.stereotype.Controller&quot;/&gt;
+&lt;/context:component-scan&gt;
+</code></pre></li>
+<li><p>@Scheduled注解</p>
+<blockquote>
+<p>在要定时执行的方法上加上@Scheduled注解。<br>@Scheduled注解后可加表达式（cron=””）来指定具体时间间隔</p>
+</blockquote>
+<pre><code>一个cron表达式有至少6个（也可能7个）有空格分隔的时间元素。
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
+按顺序依次为
+
+秒（0~59）
+
+分钟（0~59）
+
+小时（0~23）
+
+天（月）（0~31，但是你需要考虑你月的天数）
+
+月（0~11）
+
+天（星期）（1~7 1=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT）
+
+7.年份（1970－2099）
+
+其中每个元素可以是一个值(如6),一个连续区间(9-12),一个间隔时间(8-18/4)(/表示每隔4小时),一个列表(1,3,5),通配符。由于&quot;月份中的日期&quot;和&quot;星期中的日期&quot;这两个元素互斥的,必须要对其中一个设置?.
+
+0 0 10,14,16 * * ? 每天上午10点，下午2点，4点
+0 0/30 9-17 * * ?   朝九晚五工作时间内每半小时
+0 0 12 ? * WED 表示每个星期三中午12点 
+&quot;0 0 12 * * ?&quot; 每天中午12点触发 
+&quot;0 15 10 ? * *&quot; 每天上午10:15触发 
+&quot;0 15 10 * * ?&quot; 每天上午10:15触发 
+&quot;0 15 10 * * ? *&quot; 每天上午10:15触发 
+&quot;0 15 10 * * ? 2005&quot; 2005年的每天上午10:15触发 
+&quot;0 * 14 * * ?&quot; 在每天下午2点到下午2:59期间的每1分钟触发 
+&quot;0 0/5 14 * * ?&quot; 在每天下午2点到下午2:55期间的每5分钟触发 
+&quot;0 0/5 14,18 * * ?&quot; 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发 
+&quot;0 0-5 14 * * ?&quot; 在每天下午2点到下午2:05期间的每1分钟触发 
+&quot;0 10,44 14 ? 3 WED&quot; 每年三月的星期三的下午2:10和2:44触发 
+&quot;0 15 10 ? * MON-FRI&quot; 周一至周五的上午10:15触发 
+&quot;0 15 10 15 * ?&quot; 每月15日上午10:15触发 
+&quot;0 15 10 L * ?&quot; 每月最后一日的上午10:15触发 
+&quot;0 15 10 ? * 6L&quot; 每月的最后一个星期五上午10:15触发 
+&quot;0 15 10 ? * 6L 2002-2005&quot; 2002年至2005年的每月的最后一个星期五上午10:15触发 
+&quot;0 15 10 ? * 6#3&quot; 每月的第三个星期五上午10:15触发 
+
+有些子表达式能包含一些范围或列表
+
+例如：子表达式（天（星期））可以为 “MON-FRI”，“MON，WED，FRI”，“MON-WED,SAT”
+
+“*”字符代表所有可能的值
+
+因此，“*”在子表达式（月）里表示每个月的含义，“*”在子表达式（天（星期））表示星期的每一天
+
+“/”字符用来指定数值的增量
+
+例如：在子表达式（分钟）里的“0/15”表示从第0分钟开始，每15分钟
+
+     在子表达式（分钟）里的“3/20”表示从第3分钟开始，每20分钟（它和“3，23，43”）的含义一样
+
+“？”字符仅被用于天（月）和天（星期）两个子表达式，表示不指定值
+
+当2个子表达式其中之一被指定了值以后，为了避免冲突，需要将另一个子表达式的值设为“？”
+
+“L” 字符仅被用于天（月）和天（星期）两个子表达式，它是单词“last”的缩写
+
+但是它在两个子表达式里的含义是不同的。
+
+在天（月）子表达式中，“L”表示一个月的最后一天
+
+在天（星期）自表达式中，“L”表示一个星期的最后一天，也就是SAT
+
+如果在“L”前有具体的内容，它就具有其他的含义了
+
+例如：“6L”表示这个月的倒数第６天，“ＦＲＩＬ”表示这个月的最一个星期五
+
+注意：在使用“L”参数时，不要指定列表或范围，因为这会导致问题
+
+字段   允许值   允许的特殊字符
+秒         0-59         , - * /
+分         0-59         , - * /
+小时         0-23         , - * /
+日期         1-31         , - * ? / L W C
+月份         1-12 或者 JAN-DEC         , - * /
+星期         1-7 或者 SUN-SAT         , - * ? / L C #
+年（可选）         留空, 1970-2099         , - * /
+</code></pre></li>
+</ul>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/15/scheduled/">scheduled</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Mr.cola</a></p>
+        <p><span>发布时间:</span>2018-01-15, 22:01:59</p>
+        <p><span>最后更新:</span>2018-01-15, 22:09:12</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/15/scheduled/" title="scheduled">http://yoursite.com/2018/01/15/scheduled/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/15/scheduled/　　作者: Mr.cola" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/01/15/storedProcedure/">
+                    storedProcedure
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/01/15/storedProcedure/" class="archive-article-date">
-      <time datetime="2018-01-15T14:01:37.000Z" itemprop="datePublished">01-15</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/storedProcedure/">storedProcedure</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/01/11/hello-MacDown/" class="archive-article-date">
-      <time datetime="2018-01-11T15:48:07.000Z" itemprop="datePublished">01-11</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/hello-MacDown/">Hello MacDown</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"scheduled　| cola’s blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
 
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2154999';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/01/15/storedProcedure/" title="下一篇: storedProcedure">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/scheduled/">scheduled</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/storedProcedure/">storedProcedure</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/11/hello-MacDown/">Hello MacDown</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
