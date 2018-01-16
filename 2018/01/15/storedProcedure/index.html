@@ -15,16 +15,16 @@
 
 
 
-<meta name="description" content="#MySQL存储过程#  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。">
+<meta name="description" content="#MySQL存储过程  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="storedProcedure">
 <meta property="og:url" content="http://yoursite.com/2018/01/15/storedProcedure/index.html">
 <meta property="og:site_name" content="cola’s blog">
-<meta property="og:description" content="#MySQL存储过程#  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。">
-<meta property="og:updated_time" content="2018-01-15T14:15:02.000Z">
+<meta property="og:description" content="#MySQL存储过程  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。">
+<meta property="og:updated_time" content="2018-01-16T13:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="storedProcedure">
-<meta name="twitter:description" content="#MySQL存储过程#  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。">
+<meta name="twitter:description" content="#MySQL存储过程  最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -297,12 +297,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#MySQL存储过程#</p>
+        <p>#MySQL存储过程</p>
 <blockquote>
 <p>最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。</p>
 </blockquote>
 <a id="more"></a>
-<p>###语法###<br>    create procedure 存储过程名()</p>
+<p>###语法<br>    create procedure 存储过程名()</p>
 <pre><code>DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存id值的变量名就不能为id，可以改为uid等
 
 DECLARE done INT DEFAULT 0; #repeat结束标识
@@ -326,7 +326,7 @@ END IF;
 UNTIL done END REPEAT; //知道done=1时结束循环
 
 END;
-</code></pre><p>###示例###<br>引入一段我自己写的存储过程来相互验证：</p>
+</code></pre><p>###示例<br>引入一段我自己写的存储过程来相互验证：</p>
 <pre><code>BEGIN
     DECLARE activity_id INT(20);
     DECLARE start_time CHAR(20);
@@ -369,7 +369,7 @@ END
 </code></pre><blockquote>
 <p>最后加上事件，设置执行时间，至于时间间隔长短就看需求而言了。</p>
 </blockquote>
-<p>###引申1###</p>
+<p>###引申1</p>
 <blockquote>
 <p>再来看一段loop的代码片段，与repeat有异曲同工之处。</p>
 </blockquote>
@@ -420,7 +420,7 @@ from   bh_member.mb_member s1,bh_member.mb_member_info s2
 </code></pre><blockquote>
 <p>loop 标志位无条件循环，leave 类似于break 语句，跳出循环，跳出 begin end，iterate 类似于continue ，结束本次循环</p>
 </blockquote>
-<p>###引申2###</p>
+<p>###引申2</p>
 <blockquote>
 <p>再来一段while的代码片段</p>
 </blockquote>
@@ -450,7 +450,7 @@ END $$
         <p><span>本文标题:</span><a href="/2018/01/15/storedProcedure/">storedProcedure</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Mr.cola</a></p>
         <p><span>发布时间:</span>2018-01-15, 22:01:37</p>
-        <p><span>最后更新:</span>2018-01-15, 22:15:02</p>
+        <p><span>最后更新:</span>2018-01-16, 21:01:26</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/01/15/storedProcedure/" title="storedProcedure">http://yoursite.com/2018/01/15/storedProcedure/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/15/storedProcedure/　　作者: Mr.cola" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
