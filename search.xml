@@ -124,7 +124,7 @@
 <p>最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>create procedure 存储过程名()
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code>create procedure 存储过程名()
 
 DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存id值的变量名就不能为id，可以改为uid等
 
@@ -149,7 +149,7 @@ END IF;
 UNTIL done END REPEAT; //知道done=1时结束循环
 
 END;
-</code></pre><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>引入一段我自己写的存储过程来相互验证：</p>
+</code></pre><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>引入一段我自己写的存储过程来相互验证：</p>
 <pre><code>BEGIN
     DECLARE activity_id INT(20);
     DECLARE start_time CHAR(20);
@@ -192,7 +192,7 @@ END
 </code></pre><blockquote>
 <p>最后加上事件，设置执行时间，至于时间间隔长短就看需求而言了。</p>
 </blockquote>
-<h3 id="引申1"><a href="#引申1" class="headerlink" title="引申1"></a>引申1</h3><blockquote>
+<h2 id="引申1"><a href="#引申1" class="headerlink" title="引申1"></a>引申1</h2><blockquote>
 <p>再来看一段loop的代码片段，与repeat有异曲同工之处。</p>
 </blockquote>
 <pre><code>begin
