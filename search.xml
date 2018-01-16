@@ -120,13 +120,13 @@
     <entry>
       <title><![CDATA[storedProcedure]]></title>
       <url>/2018/01/15/storedProcedure/</url>
-      <content type="html"><![CDATA[<p>#MySQL存储过程</p>
-<blockquote>
+      <content type="html"><![CDATA[<h1 id="MySQL存储过程"><a href="#MySQL存储过程" class="headerlink" title="MySQL存储过程"></a>MySQL存储过程</h1><blockquote>
 <p>最近项目中遇到一些需要写存储过程的需求，设置商家自动关闭与打开，自动评价，团购活动自动下架等等。项目的需求就是学习的动力，掌握了语法很快就能写出一个满足需求的存储过程。</p>
 </blockquote>
 <a id="more"></a>
-<p>###语法<br>    create procedure 存储过程名()</p>
-<pre><code>DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存id值的变量名就不能为id，可以改为uid等
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>create procedure 存储过程名()
+
+DECLARE uid INT; #注意声明的变量名不能跟表的字段名一致，否则会报错。如user的主键是id，那么这里声明用来存id值的变量名就不能为id，可以改为uid等
 
 DECLARE done INT DEFAULT 0; #repeat结束标识
 
@@ -149,7 +149,7 @@ END IF;
 UNTIL done END REPEAT; //知道done=1时结束循环
 
 END;
-</code></pre><p>###示例<br>引入一段我自己写的存储过程来相互验证：</p>
+</code></pre><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>引入一段我自己写的存储过程来相互验证：</p>
 <pre><code>BEGIN
     DECLARE activity_id INT(20);
     DECLARE start_time CHAR(20);
@@ -192,8 +192,7 @@ END
 </code></pre><blockquote>
 <p>最后加上事件，设置执行时间，至于时间间隔长短就看需求而言了。</p>
 </blockquote>
-<p>###引申1</p>
-<blockquote>
+<h3 id="引申1"><a href="#引申1" class="headerlink" title="引申1"></a>引申1</h3><blockquote>
 <p>再来看一段loop的代码片段，与repeat有异曲同工之处。</p>
 </blockquote>
 <pre><code>begin
@@ -243,8 +242,7 @@ from   bh_member.mb_member s1,bh_member.mb_member_info s2
 </code></pre><blockquote>
 <p>loop 标志位无条件循环，leave 类似于break 语句，跳出循环，跳出 begin end，iterate 类似于continue ，结束本次循环</p>
 </blockquote>
-<p>###引申2</p>
-<blockquote>
+<h3 id="引申2"><a href="#引申2" class="headerlink" title="引申2"></a>引申2</h3><blockquote>
 <p>再来一段while的代码片段</p>
 </blockquote>
 <pre><code>BEGIN  
