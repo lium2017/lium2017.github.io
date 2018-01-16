@@ -5,12 +5,10 @@
     <entry>
       <title><![CDATA[scheduled]]></title>
       <url>/2018/01/15/scheduled/</url>
-      <content type="html"><![CDATA[<p>#Spring定时器</p>
-<blockquote>
+      <content type="html"><![CDATA[<h1 id="Spring定时器"><a href="#Spring定时器" class="headerlink" title="Spring定时器"></a>Spring定时器</h1><blockquote>
 <p>项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器<br><a id="more"></a></p>
 </blockquote>
-<p>##Spring.xml配置</p>
-<ul>
+<h2 id="Spring-xml配置"><a href="#Spring-xml配置" class="headerlink" title="Spring.xml配置"></a>Spring.xml配置</h2><ul>
 <li><p>开头bean标签中添加以下内容：</p>
 <pre><code>xmlns:task=&quot;http://www.springframework.org/schema/task&quot; 
 </code></pre></li>
