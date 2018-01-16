@@ -9,7 +9,7 @@
 <blockquote>
 <p>项目的算法需要隔五分钟跑一次，以前听闻quartz框架，经过一番了解感觉对于目前项目的需求来说这个框架太重了，遂决定使用spring的@scheduled注解作为定时器<br><a id="more"></a></p>
 </blockquote>
-<p>###Spring.xml配置</p>
+<p>##Spring.xml配置</p>
 <ul>
 <li><p>开头bean标签中添加以下内容：</p>
 <pre><code>xmlns:task=&quot;http://www.springframework.org/schema/task&quot; 
