@@ -116,18 +116,14 @@
       
         <categories>
             
-            <category> 术业专攻 </category>
+            <category> Java </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> Hexo </tag>
-            
-            <tag> JavaScript </tag>
-            
-            <tag> jQuery </tag>
+            <tag> Spring </tag>
             
         </tags>
         
@@ -278,6 +274,18 @@ END $$
 <p>至此，mysql存储过程的三大循环结束。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> MySQL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 存储过程 </tag>
+            
+        </tags>
         
     </entry>
     
