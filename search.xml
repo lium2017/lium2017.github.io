@@ -125,6 +125,8 @@
             
             <tag> Spring </tag>
             
+            <tag> [object Object] </tag>
+            
         </tags>
         
     </entry>
@@ -284,6 +286,8 @@ END $$
         <tags>
             
             <tag> 存储过程 </tag>
+            
+            <tag> [object Object] </tag>
             
         </tags>
         
